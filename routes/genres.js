@@ -1,5 +1,7 @@
 const express = require('express');
 const { Genre, validate } = require('../models/genre');
+const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 
 const router = express.Router();
 
@@ -20,7 +22,8 @@ router.get('/:id', (req, res) => {
 })
 
 // add a new genre
-router.post('/', (req, res) => {
+router.post('/', auth, (req, res) => {
+    
     //validate
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
@@ -32,7 +35,7 @@ router.post('/', (req, res) => {
 })
 
 // modify an existing genre
-router.put('/:id', (req, res) => {
+router.put('/:id', auth, (req, res) => {
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
@@ -46,7 +49,7 @@ router.put('/:id', (req, res) => {
 })
 
 // delete an existing genre
-router.delete('/:id', (req, res) => {
+router.delete('/:id', [auth, admin], (req, res) => {
     deleteGenre (req.params.id)
         .then(genre => {
              if (!genre) return res.status(404).send(`Genre with id ${req.params.id} does not exist`);

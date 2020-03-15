@@ -1,5 +1,7 @@
 const express = require('express');
 const { Movie, validate } = require('../models/movie');
+const auth = require('../middleware/auth');
+
 const { getGenre } = require('./genres');
 
 const router = express.Router();
@@ -9,7 +11,7 @@ router.get('/', async (req, res) => {
     res.send(movies);
 });
 
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
     const { error } = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
