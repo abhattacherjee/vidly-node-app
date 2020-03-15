@@ -114,3 +114,4 @@ async function deleteGenre (id) {
 }
 
 module.exports = router;
+module.exports.getGenre = getGenre;
