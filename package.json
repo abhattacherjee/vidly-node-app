@@ -1,13 +1,16 @@
 {
   "name": "vidly",
   "version": "1.0.0",
-  "description": "",
+  "description": "Vidly video rental application",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "abhattacherjee",
+  "repository": {
+    "url": "https://github.com/abhattacherjee/vidly-node-app"
+  },
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^4.0.1",
