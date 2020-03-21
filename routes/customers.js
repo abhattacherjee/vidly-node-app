@@ -5,10 +5,9 @@ const auth = require('../middleware/auth');
 const router = express.Router();
 
 // get
-router.get('/', (req, res) => {
-    getAllCustomers()
-        .then(customers => res.send(customers))
-        .catch(err => res.status(500).send('Error getting all customers: ' + err.message));
+router.get('/', async (req, res) => {
+    const customers = await getAllCustomers()
+    res.send(customers);
 });
 
 router.get('/:id', (req, res) => {

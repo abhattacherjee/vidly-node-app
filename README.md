@@ -16,7 +16,7 @@ $ mkdir -p /usr/local/var/mongodb/data/db
 
 Start MongoDB daemon service
 ```
-$ mongod --dbpath /usr/local/var/mongdb
+$ mongod --dbpath /usr/local/var/mongodb
 ```
 
 To run vidly app on port 3000

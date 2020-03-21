@@ -5,20 +5,17 @@ const admin = require('../middleware/admin');
 
 const router = express.Router();
 
-// get
-router.get('/', (req, res) => {
-    getAllGenres()
-        .then(genres => res.send(genres))
-        .catch(err => res.status(500).send('Error getting all genres: ' + err.message));
+// get all genres
+router.get('/', async (req, res) => {
+    const genres = await getAllGenres();
+    res.send(genres);
 });
 
-router.get('/:id', (req, res) => {
-    getGenre(req.params.id)
-        .then(genre => {
-            if (!genre) return res.status(404).send(`Genre with id ${req.params.id} does not exist`);
-            res.send(genre);
-        })
-        .catch(err => res.status(500).send('Error getting genre: ' + err.message));
+// get a specific genre
+router.get('/:id', async (req, res) => {
+    const genre = await getGenre(req.params.id);
+    if (!genre) return res.status(404).send(`Genre with id ${req.params.id} does not exist`);
+    res.send(genre);
 })
 
 // add a new genre
@@ -44,8 +41,6 @@ router.put('/:id', auth, (req, res) => {
             if (!genre) return res.status(404).send(`Genre with id ${req.params.id} does not exist`);
             res.send(genre);
         })
-        .catch(err => res.status(500).send('Error updating genre: ', err.message));
-
 })
 
 // delete an existing genre
@@ -55,7 +50,6 @@ router.delete('/:id', [auth, admin], (req, res) => {
              if (!genre) return res.status(404).send(`Genre with id ${req.params.id} does not exist`);
              res.send(genre)
         })
-        .catch(err => res.status(500).send('Error deleting genre: ', err.message));
 })
 
 //dao functions
@@ -85,7 +79,7 @@ async function getAllGenres () {
 
 async function getGenre (id) {
     try {
-        return await Genre.find({_id: id}).sort({name: 1});
+        return await Genre.findById(id).sort({name: 1});
     }
     catch (err) {
         console.error('Error while getting genre: ' + err.message);
