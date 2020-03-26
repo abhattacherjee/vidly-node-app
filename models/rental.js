@@ -12,7 +12,9 @@ const rentalSchema = new mongoose.Schema({
     rentalDate: {
         type: Date,
         default: Date
-    }
+    },
+    dateReturned: Date,
+    rentalFee: Number
 });
 
 const Rental = mongoose.model('Rental', rentalSchema);

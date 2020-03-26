@@ -6,15 +6,10 @@ const mongoose = require('mongoose');
 let server;
 
 describe('/api/genres', () => {
-    beforeEach( async () => {
-        setTimeout(() => {
-            server = require('../../index');
-        }, 2000);
-    });
+    beforeEach(() =>  server = require('../../index'));
     afterEach( async () => {
-        server.close();
+        await server.close();
         await Genre.remove({});
-
      });
 
     describe('GET /',  () => {
