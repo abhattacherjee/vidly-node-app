@@ -4,7 +4,7 @@
   "description": "Vidly video rental application",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll"
+    "test": "jest --watchAll --verbose --coverage"
   },
   "keywords": [],
   "author": "abhattacherjee",
@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@types/jest": "^25.1.4",
-    "jest": "^25.1.0"
+    "jest": "^25.1.0",
+    "supertest": "^4.0.2"
   }
 }
