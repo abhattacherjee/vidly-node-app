@@ -29,7 +29,7 @@ const validateCustomer = customer => {
         phone: Joi.string().min(5).max(50).required()
     }
     return Joi.validate(customer, schemaCustomer);
-}
+};
 
 module.exports.Customer = Customer;
 module.exports.validate = validateCustomer;
