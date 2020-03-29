@@ -56,9 +56,9 @@ describe('/api/genres', () => {
         let token;
         let name;
 
-        const exec = async () => {
+        const exec =  () => {
             // call api to save to genre
-            return await request(server)
+            return request(server)
                 .post('/api/genres')
                 .set('x-auth-token', token)
                 .send({ name });

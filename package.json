@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Vidly video rental application",
   "main": "index.js",
+  "jest": {
+    "testEnvironment": "node"
+  },
   "scripts": {
     "start": "node index.js",
     "test": "jest --watchAll --verbose --coverage"
