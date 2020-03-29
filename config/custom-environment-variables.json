@@ -1,3 +1,5 @@
 {
-    "jwtPrivateKey": "vidyly_jwtPrivateKey"
+    "jwtPrivateKey": "vidyly_jwtPrivateKey",
+    "db": "vidly_db"
 }
+
