@@ -24,8 +24,8 @@ router.post('/', auth, async (req, res) => {
     const movie = new Movie({
         title: req.body.title,
         genre: {
-            _id: genre[0].id,
-            name: genre[0].name
+            _id: genre.id,
+            name: genre.name
         },
         numberInStock: req.body.numberInStock,
         dailyRentalRate: req.body.dailyRentalRate
