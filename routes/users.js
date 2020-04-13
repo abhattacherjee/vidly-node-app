@@ -16,20 +16,23 @@ router.post('/', async (req, res) => {
 
     try {
         user = new User(_.pick(req.body, ['name', 'email', 'password']));
-        
+
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(user.password, salt);
 
         await user.save();
 
         const token = user.generateAuthToken();
-        res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));
+        res
+            .header('x-auth-token', token)
+            .header('access-control-expose-headers', 'x-auth-token')
+            .send(_.pick(user, ['_id', 'name', 'email']));
     }
     catch(err) {
         console.error(err);
         res.status(500).send('Error creating new user');
     }
-    
+
 })
 
 // get current user
